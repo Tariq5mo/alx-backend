@@ -89,7 +89,7 @@ class Server(unittest.TestCase):
             di["page_size"] = len(dataset)
             di["page"] = page
             di["data"] = dataset
-            di["next_page"] = page + 1 if page <= total_pages else None
+            di["next_page"] = page + 1 if page < total_pages else None
             di["prev_page"] = page - 1 if page > 1 else None
             di["total_pages"] = total_pages
             return di
