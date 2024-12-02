@@ -49,7 +49,7 @@ class Server(unittest.TestCase):
 
         Returns:
             List[List[str]]: _description_
-        """        
+        """
         self.assertIsInstance(page, int)
         self.assertIsInstance(page_size, int)
         self.assertGreater(page, 0)
