@@ -41,14 +41,16 @@ class Server(unittest.TestCase):
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List[str]]:
-        """_summary_
+        """
+        Get a page from the dataset.
 
         Args:
-            page (int, optional): _description_. Defaults to 1.
-            page_size (int, optional): _description_. Defaults to 10.
+            page (int, optional): The current page number. Defaults to 1.
+            page_size (int, optional): The number of items per page.
+            Defaults to 10.
 
         Returns:
-            List[List[str]]: _description_
+            List[List[str]]: The dataset page.
         """
         self.assertIsInstance(page, int)
         self.assertIsInstance(page_size, int)
@@ -60,14 +62,24 @@ class Server(unittest.TestCase):
     def get_hyper(
         self, page: int = 1, page_size: int = 10
     ) -> Dict[str, Union[List[List[str]], int, None]]:
-        """_summary_
+        """
+        Get a page from the dataset with hypermedia metadata.
 
         Args:
-            page (int, optional): _description_. Defaults to 1.
-            page_size (int, optional): _description_. Defaults to 10.
+            page (int, optional): The current page number. Defaults to 1.
+            page_size (int, optional): The number of items per page.
+            Defaults to 10.
 
         Returns:
-            Dict[str, Union[List[List[str]], int, None]]: _description_
+            Dict[str, Union[List[List[str]], int, None]]:
+                                    A dictionary containing:
+                - page_size: The length of the returned dataset page.
+                - page: The current page number.
+                - data: The dataset page.
+                - next_page: Number of the next page, None if no next page.
+                - prev_page: Number of the previous page,
+                                    None if no previous page.
+                - total_pages: The total number of pages in the dataset.
         """
         di: Dict[str, Union[List[List[str]], int, None]] = {}
         total_items = len(self.dataset())
