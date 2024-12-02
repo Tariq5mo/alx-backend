@@ -81,10 +81,10 @@ class Server(unittest.TestCase):
                                     None if no previous page.
                 - total_pages: The total number of pages in the dataset.
         """
-        di = {}
+        dataset = self.get_page(page, page_size)
+        di: Dict[str, Union[List[List[str]], int, None]] = {}
         total_items = len(self.dataset())
         total_pages = (total_items + page_size - 1) // page_size
-        dataset = self.get_page(page, page_size)
         di["page_size"] = len(dataset)
         di["page"] = page
         di["data"] = dataset
